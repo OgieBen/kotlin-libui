@@ -20,6 +20,7 @@ pluginManagement {
 enableFeaturePreview("GRADLE_METADATA")
 
 include(":compose-runtime")
+include(":ui-core")
 /*
 include(":libui")
 
