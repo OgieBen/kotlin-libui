@@ -16,7 +16,6 @@
 
 package androidx.ui.core
 
-import android.content.Context
 import androidx.ui.engine.geometry.Rect
 import androidx.ui.graphics.Canvas
 
@@ -30,11 +29,11 @@ data class Density(val density: Float, val fontScale: Float = 1f)
  *
  */
 // TODO(Andrey): Move to android specific module
-fun Density(context: Context): Density =
+/*TODO fun Density(context: NativeContext): Density =
     Density(
         context.resources.displayMetrics.density,
         context.resources.configuration.fontScale
-    )
+    )*/
 
 /**
  * If you have a [Density] object and you want to perform some conversions use this.

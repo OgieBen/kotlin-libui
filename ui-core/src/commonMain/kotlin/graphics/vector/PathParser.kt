@@ -16,7 +16,7 @@
 
 package androidx.ui.graphics.vector
 
-import android.util.Log
+//TODO import android.util.Log
 import androidx.ui.graphics.Path
 
 private const val LOGTAG = "PathParser"
@@ -200,10 +200,10 @@ class PathParser {
     ) {
 
         /* Convert rotation angle from degrees to radians */
-        val thetaD = Math.toRadians(theta)
+        val thetaD = 0.14 /*TODO kotlin.math.toRadians(theta)*/
         /* Pre-compute rotation matrix entries */
-        val cosTheta = Math.cos(thetaD)
-        val sinTheta = Math.sin(thetaD)
+        val cosTheta = kotlin.math.cos(thetaD)
+        val sinTheta = kotlin.math.sin(thetaD)
         /* Transform (x0, y0) and (x1, y1) into unit space */
         /* using (inverse) rotation, followed by (inverse) scale */
         val x0p = (x0 * cosTheta + y0 * sinTheta) / a
@@ -219,18 +219,18 @@ class PathParser {
         /* Solve for intersecting unit circles */
         val dsq = dx * dx + dy * dy
         if (dsq == 0.0) {
-            Log.w(LOGTAG, " Points are coincident")
+            //TODO Log.w(LOGTAG, " Points are coincident")
             return /* Points are coincident */
         }
         val disc = 1.0 / dsq - 1.0 / 4.0
         if (disc < 0.0) {
-            Log.w(LOGTAG, "Points are too far apart $dsq")
-            val adjust = (Math.sqrt(dsq) / 1.99999).toFloat()
+            //TODO Log.w(LOGTAG, "Points are too far apart $dsq")
+            val adjust = (kotlin.math.sqrt(dsq) / 1.99999).toFloat()
             drawArc(p, x0, y0, x1, y1, a * adjust,
                     b * adjust, theta, isMoreThanHalf, isPositiveArc)
             return /* Points are too far apart */
         }
-        val s = Math.sqrt(disc)
+        val s = kotlin.math.sqrt(disc)
         val sdx = s * dx
         val sdy = s * dy
         var cx: Double
@@ -243,16 +243,16 @@ class PathParser {
             cy = ym - sdx
         }
 
-        val eta0 = Math.atan2(y0p - cy, x0p - cx)
+        val eta0 = kotlin.math.atan2(y0p - cy, x0p - cx)
 
-        val eta1 = Math.atan2(y1p - cy, x1p - cx)
+        val eta1 = kotlin.math.atan2(y1p - cy, x1p - cx)
 
         var sweep = eta1 - eta0
         if (isPositiveArc != (sweep >= 0)) {
             if (sweep > 0) {
-                sweep -= 2 * Math.PI
+                sweep -= 2 * kotlin.math.PI
             } else {
-                sweep += 2 * Math.PI
+                sweep += 2 * kotlin.math.PI
             }
         }
 
@@ -298,27 +298,27 @@ class PathParser {
         // and http://www.spaceroots.org/documents/ellipse/node22.html
 
         // Maximum of 45 degrees per cubic Bezier segment
-        val numSegments = Math.ceil(Math.abs(sweep * 4 / Math.PI)).toInt()
+        val numSegments = kotlin.math.ceil(kotlin.math.abs(sweep * 4 / kotlin.math.PI)).toInt()
 
         var eta1 = start
-        val cosTheta = Math.cos(theta)
-        val sinTheta = Math.sin(theta)
-        val cosEta1 = Math.cos(eta1)
-        val sinEta1 = Math.sin(eta1)
+        val cosTheta = kotlin.math.cos(theta)
+        val sinTheta = kotlin.math.sin(theta)
+        val cosEta1 = kotlin.math.cos(eta1)
+        val sinEta1 = kotlin.math.sin(eta1)
         var ep1x = (-a * cosTheta * sinEta1) - (b * sinTheta * cosEta1)
         var ep1y = (-a * sinTheta * sinEta1) + (b * cosTheta * cosEta1)
 
         val anglePerSegment = sweep / numSegments
         for (i in 0 until numSegments) {
             val eta2 = eta1 + anglePerSegment
-            val sinEta2 = Math.sin(eta2)
-            val cosEta2 = Math.cos(eta2)
+            val sinEta2 = kotlin.math.sin(eta2)
+            val cosEta2 = kotlin.math.cos(eta2)
             val e2x = cx + (a * cosTheta * cosEta2) - (b * sinTheta * sinEta2)
             val e2y = cy + (a * sinTheta * cosEta2) + (b * cosTheta * sinEta2)
             val ep2x = (-a * cosTheta * sinEta2) - (b * sinTheta * cosEta2)
             val ep2y = (-a * sinTheta * sinEta2) + (b * cosTheta * cosEta2)
-            val tanDiff2 = Math.tan((eta2 - eta1) / 2)
-            val alpha = Math.sin(eta2 - eta1) * (Math.sqrt(4 + 3.0 * tanDiff2 * tanDiff2) - 1) / 3
+            val tanDiff2 = kotlin.math.tan((eta2 - eta1) / 2)
+            val alpha = kotlin.math.sin(eta2 - eta1) * (kotlin.math.sqrt(4 + 3.0 * tanDiff2 * tanDiff2) - 1) / 3
             val q1x = eta1x + alpha * ep1x
             val q1y = eta1y + alpha * ep1y
             val q2x = e2x - alpha * ep2x
@@ -653,7 +653,7 @@ class PathParser {
         target.moveTo(currentPoint.x, currentPoint.y)
     }
 
-    @Throws(IllegalArgumentException::class)
+    //TODO @Throws(IllegalArgumentException::class)
     private fun addNode(cmd: Char, args: FloatArray) {
         nodes.add(
             PathNode(cmd.toPathCommand(), args)
@@ -679,7 +679,7 @@ class PathParser {
         return index
     }
 
-    @Throws(NumberFormatException::class)
+    //TODO @Throws(NumberFormatException::class)
     private fun getFloats(s: String): FloatArray {
         if (s[0] == 'z' || s[0] == 'Z') {
             return FloatArray(0)
@@ -700,8 +700,8 @@ class PathParser {
             endPosition = result.endPosition
 
             if (startPosition < endPosition) {
-                results[count++] = java.lang.Float.parseFloat(
-                        s.substring(startPosition, endPosition))
+                results[count++] = 0.14f /*TODO java.lang.Float.parseFloat(
+                        s.substring(startPosition, endPosition))*/
             }
 
             if (result.endWithNegativeOrDot) {
@@ -720,10 +720,10 @@ class PathParser {
         }
         val originalLength = original.size
         if (start < 0 || start > originalLength) {
-            throw ArrayIndexOutOfBoundsException()
+            //TODO throw ArrayIndexOutOfBoundsException()
         }
         val resultLength = end - start
-        val copyLength = Math.min(resultLength, originalLength - start)
+        val copyLength = kotlin.math.min(resultLength, originalLength - start)
         val result = FloatArray(resultLength)
         original.copyInto(result, 0, start, start + copyLength)
         return result

@@ -53,14 +53,14 @@ import androidx.ui.vectormath64.degrees
  * given recorder.
  */
 
-// /* expect */ fun Canvas(image: Image): Canvas
-//
-// /* expect */ fun Canvas(
-//    recorder: PictureRecorder,
-//    cullRect: Rect = Rect.largest
-// ): Canvas
+expect fun Canvas(image: Image): Canvas
 
-/* expect */ typealias NativeCanvas = android.graphics.Canvas
+expect fun Canvas(
+   recorder: PictureRecorder,
+   cullRect: Rect = Rect.largest
+): Canvas
+
+expect class NativeCanvas
 
 /**
  * Saves a copy of the current transform and clip on the save stack and executes the
@@ -73,14 +73,7 @@ import androidx.ui.vectormath64.degrees
  *  [Canvas.saveLayer], which does the same thing but additionally also groups the
  *    commands
  */
-/* expect */ inline fun Canvas.withSave(block: () -> Unit) {
-    try {
-        save()
-        block()
-    } finally {
-        restore()
-    }
-}
+expect fun Canvas.withSave(block: () -> Unit)
 
 /**
  * Saves a copy of the current transform and clip on the save stack, and then
@@ -137,7 +130,6 @@ import androidx.ui.vectormath64.degrees
  *  * [BlendMode], which discusses the use of [Paint.blendMode] with
  *    [saveLayer].
  */
-@SuppressWarnings("deprecation")
 inline fun Canvas.withSaveLayer(bounds: Rect, paint: Paint, block: () -> Unit) {
     try {
         saveLayer(bounds, paint)
@@ -301,7 +293,6 @@ interface Canvas {
      * Use [ClipOp.difference] to subtract the provided rectangle from the
      * current clip.
      */
-    @SuppressWarnings("deprecation")
     fun clipRect(rect: Rect, clipOp: ClipOp = ClipOp.intersect)
 
     /**

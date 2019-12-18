@@ -15,7 +15,7 @@
  */
 
 package androidx.ui.core
-
+/*TODO
 import androidx.test.filters.SmallTest
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.core.IsEqual.equalTo
@@ -474,4 +474,4 @@ class PointerInputTest {
             ConsumedData(PxPosition(consumedX.px, consumedY.px), consumedDown)
         )
     }
-}
+}*/

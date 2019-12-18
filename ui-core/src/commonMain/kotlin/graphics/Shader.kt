@@ -16,16 +16,13 @@
 
 package androidx.ui.graphics
 
-import android.graphics.BitmapShader
-import android.graphics.LinearGradient
-import android.graphics.RadialGradient
 import androidx.ui.engine.geometry.Offset
 
 /**
  * Class that represents the corresponding Shader implementation on a platform. This maps
  * to Gradients or ImageShaders
  */
-/* expect */ typealias NativeShader = android.graphics.Shader
+expect class NativeShader
 
 /**
  * Inline class used to represent primitives used to render gradients or to tile an [Image]
@@ -43,26 +40,13 @@ import androidx.ui.engine.geometry.Offset
  * argument. For details, see the [TileMode] enum. If no [TileMode] is provided
  * the default value of [TileMode.Clamp] is used
  */
-/* expect */ fun LinearGradientShader(
+expect fun LinearGradientShader(
     from: Offset,
     to: Offset,
     colors: List<Color>,
     colorStops: List<Float>? = null,
     tileMode: TileMode = TileMode.Clamp
-): Shader {
-    validateColorStops(colors, colorStops)
-    return Shader(
-        LinearGradient(
-            from.dx,
-            from.dy,
-            to.dx,
-            to.dy,
-            colors.toIntArray(),
-            colorStops?.toFloatArray(),
-            tileMode.nativeTileMode
-        )
-    )
-}
+): Shader
 
 /**
  * Creates a radial gradient centered at `center` that ends at `radius`
@@ -79,54 +63,16 @@ import androidx.ui.engine.geometry.Offset
  * argument. For details, see the [TileMode] enum. If no [TileMode] is provided
  * the default value of [TileMode.Clamp] is used
  */
-/* expect */ fun RadialGradientShader(
+expect fun RadialGradientShader(
     center: Offset,
     radius: Float,
     colors: List<Color>,
     colorStops: List<Float>? = null,
     tileMode: TileMode = TileMode.Clamp
-): Shader {
-    validateColorStops(colors, colorStops)
-    return Shader(
-        RadialGradient(
-            center.dx,
-            center.dy,
-            radius,
-            colors.toIntArray(),
-            colorStops?.toFloatArray(),
-            tileMode.nativeTileMode
-        )
-    )
-}
+): Shader
 
-/* expect */ fun ImageShader(
+expect fun ImageShader(
     image: Image,
     tileModeX: TileMode = TileMode.Clamp,
     tileModeY: TileMode = TileMode.Clamp
-): Shader {
-    return Shader(
-        BitmapShader(
-            image.nativeImage,
-            tileModeX.nativeTileMode,
-            tileModeY.nativeTileMode
-        )
-    )
-}
-
-private fun List<Color>.toIntArray(): IntArray = IntArray(size) { i -> this[i].toArgb() }
-
-private fun validateColorStops(colors: List<Color>, colorStops: List<Float>?) {
-    if (colorStops == null) {
-        if (colors.size < 2) {
-            throw IllegalArgumentException(
-                "colors must have length of at least 2 if colorStops " +
-                        "is omitted."
-            )
-        }
-    } else if (colors.size != colorStops.size) {
-        throw IllegalArgumentException(
-            "colors and colorStops arguments must have" +
-                    " equal length."
-        )
-    }
-}
+): Shader

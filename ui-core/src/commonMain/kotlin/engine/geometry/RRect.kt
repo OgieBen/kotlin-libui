@@ -101,7 +101,7 @@ data class RRect(
     private fun minRadius(min: Float, radius1: Float, radius2: Float, limit: Float): Float {
         val sum = radius1 + radius2
         return if (sum > limit && sum != 0.0f) {
-            Math.min(min, limit / sum)
+            kotlin.math.min(min, limit / sum)
         } else {
             min
         }
@@ -216,7 +216,7 @@ data class RRect(
 
     companion object {
         /** A rounded rectangle with all the values set to zero. */
-        @JvmStatic
+        //TODO @JvmStatic
         val Zero = RRect(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f)
     }
 }
@@ -418,10 +418,10 @@ fun RRect.outerRect(): Rect = Rect.fromLTRB(left, top, right, bottom)
 fun RRect.safeInnerRect(): Rect {
     val insetFactor = 0.29289321881f; // 1-cos(pi/4)
 
-    val leftRadius = Math.max(bottomLeftRadiusX, topLeftRadiusX)
-    val topRadius = Math.max(topLeftRadiusY, topRightRadiusY)
-    val rightRadius = Math.max(topRightRadiusX, bottomRightRadiusX)
-    val bottomRadius = Math.max(bottomRightRadiusY, bottomLeftRadiusY)
+    val leftRadius = kotlin.math.max(bottomLeftRadiusX, topLeftRadiusX)
+    val topRadius = kotlin.math.max(topLeftRadiusY, topRightRadiusY)
+    val rightRadius = kotlin.math.max(topRightRadiusX, bottomRightRadiusX)
+    val bottomRadius = kotlin.math.max(bottomRightRadiusY, bottomLeftRadiusY)
 
     return Rect.fromLTRB(
         left + leftRadius * insetFactor,
@@ -440,10 +440,10 @@ fun RRect.safeInnerRect(): Rect {
  * or height.
  */
 fun RRect.middleRect(): Rect {
-    val leftRadius = Math.max(bottomLeftRadiusX, topLeftRadiusX)
-    val topRadius = Math.max(topLeftRadiusY, topRightRadiusY)
-    val rightRadius = Math.max(topRightRadiusX, bottomRightRadiusX)
-    val bottomRadius = Math.max(bottomRightRadiusY, bottomLeftRadiusY)
+    val leftRadius = kotlin.math.max(bottomLeftRadiusX, topLeftRadiusX)
+    val topRadius = kotlin.math.max(topLeftRadiusY, topRightRadiusY)
+    val rightRadius = kotlin.math.max(topRightRadiusX, bottomRightRadiusX)
+    val bottomRadius = kotlin.math.max(bottomRightRadiusY, bottomLeftRadiusY)
     return Rect.fromLTRB(
         left + leftRadius,
         top + topRadius,
@@ -459,8 +459,8 @@ fun RRect.middleRect(): Rect {
  * resulting [Rect] will have negative width or height.
  */
 fun RRect.wideMiddleRect(): Rect {
-    val topRadius = Math.max(topLeftRadiusY, topRightRadiusY)
-    val bottomRadius = Math.max(bottomRightRadiusY, bottomLeftRadiusY)
+    val topRadius = kotlin.math.max(topLeftRadiusY, topRightRadiusY)
+    val bottomRadius = kotlin.math.max(bottomRightRadiusY, bottomLeftRadiusY)
     return Rect.fromLTRB(
         left,
         top + topRadius,
@@ -476,8 +476,8 @@ fun RRect.wideMiddleRect(): Rect {
  * resulting [Rect] will have negative width or height.
  */
 fun RRect.tallMiddleRect(): Rect {
-    val leftRadius = Math.max(bottomLeftRadiusX, topLeftRadiusX)
-    val rightRadius = Math.max(topRightRadiusX, bottomRightRadiusX)
+    val leftRadius = kotlin.math.max(bottomLeftRadiusX, topLeftRadiusX)
+    val rightRadius = kotlin.math.max(topRightRadiusX, bottomRightRadiusX)
     return Rect.fromLTRB(
         left + leftRadius,
         top,
@@ -527,13 +527,13 @@ val RRect.isCircle get() = width == height && isEllipse
  * The lesser of the magnitudes of the [RRect.width] and the [RRect.height] of this
  * rounded rectangle.
  */
-val RRect.shortestSide get(): Float = Math.min(width.absoluteValue, height.absoluteValue)
+val RRect.shortestSide get(): Float = kotlin.math.min(width.absoluteValue, height.absoluteValue)
 
 /**
  * The greater of the magnitudes of the [RRect.width] and the [RRect.height] of this
  * rounded rectangle.
  */
-val RRect.longestSide get(): Float = Math.max(width.absoluteValue, height.absoluteValue)
+val RRect.longestSide get(): Float = kotlin.math.max(width.absoluteValue, height.absoluteValue)
 
 /**
  * The offset to the point halfway between the left and right and the top and

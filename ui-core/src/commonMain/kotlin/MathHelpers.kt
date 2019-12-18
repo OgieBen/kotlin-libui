@@ -39,7 +39,7 @@ fun lerp(start: Long, stop: Long, fraction: Float): Long {
     return start + ((stop - start) * fraction.toDouble()).roundToLong()
 }
 
-fun Float.toStringAsFixed(digits: Int) = String.format("%.${digits}f", this)
+fun Float.toStringAsFixed(digits: Int): String { TODO() } //= String.format("%.${digits}f", this)
 
 @UseExperimental(kotlin.ExperimentalUnsignedTypes::class)
 fun Int.toHexString() = "0x${toUInt().toString(16).padStart(8, '0')}"

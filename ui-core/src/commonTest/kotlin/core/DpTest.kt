@@ -15,7 +15,7 @@
  */
 
 package androidx.ui.core
-
+/*TODO
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Assert.fail
@@ -409,4 +409,4 @@ class DpTest {
     fun sizeDivDouble() {
         assertEquals(Size(10.dp, 10.dp), Size(40.dp, 40.dp) / 4.0)
     }
-}
+}*/

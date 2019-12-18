@@ -574,16 +574,16 @@ class Float16(val halfValue: Short) : Comparable<Float16> {
                     o.append("0x0.0p0")
                 } else {
                     o.append("0x0.")
-                    val significand = Integer.toHexString(m)
+                    val significand = m.toString(16)
                     o.append(significand.replaceFirst("0{2,}$".toRegex(), ""))
                     o.append("p-14")
                 }
             } else {
                 o.append("0x1.")
-                val significand = Integer.toHexString(m)
+                val significand = m.toString(16)
                 o.append(significand.replaceFirst("0{2,}$".toRegex(), ""))
                 o.append('p')
-                o.append(Integer.toString(e - FP16_EXPONENT_BIAS))
+                o.append((e - FP16_EXPONENT_BIAS).toString())
             }
         }
 
@@ -679,7 +679,7 @@ class Float16(val halfValue: Short) : Comparable<Float16> {
         }
 
         private fun floatToHalf(f: Float): Short {
-            val bits = java.lang.Float.floatToRawIntBits(f)
+            val bits = 14 //TODO java.lang.Float.floatToRawIntBits(f)
             val s = bits.ushr(FP32_SIGN_SHIFT)
             var e = bits.ushr(FP32_EXPONENT_SHIFT) and FP32_EXPONENT_MASK
             var m = bits and FP32_SIGNIFICAND_MASK
@@ -701,7 +701,7 @@ class Float16(val halfValue: Short) : Comparable<Float16> {
                         // The fp32 value is a normalized float less than MIN_NORMAL,
                         // we convert to a denorm fp16
                         m = m or 0x800000 shr 1 - e
-                        if (m and 0x1000 != 0) m += 0x2000
+                        if ((m and 0x1000) != 0) m = m + 0x2000
                         outM = m shr 13
                     }
                 } else {

@@ -16,7 +16,7 @@
 
 package androidx.ui.autofill
 
-import android.graphics.Rect
+import androidx.ui.NativeRect
 import androidx.annotation.GuardedBy
 
 /**
@@ -75,14 +75,14 @@ enum class AutofillType {
  */
 data class AutofillNode(
     val autofillTypes: List<AutofillType> = listOf(),
-    var boundingBox: Rect? = null,
+    var boundingBox: NativeRect? = null,
     val onFill: ((String) -> Unit)?
 ) {
     internal companion object {
         @GuardedBy("this")
         private var previousId = 0
 
-        @Synchronized
+        //TODO @Synchronized
         private fun generateId() = ++previousId
     }
 

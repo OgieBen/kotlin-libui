@@ -34,17 +34,15 @@ import androidx.ui.graphics.colorspace.ColorSpace
  * To obtain an [Image] object, use [instantiateImageCodec].
  */
 
-// TODO njawad/aelias uncomment implementation when host side testing support is enabled +
-//  uncomment `expect`
-// expect fun Image(
-//    width: Int,
-//    height: Int,
-//    config: ImageConfig = ImageConfig.Argb8888,
-//    hasAlpha: Boolean = true,
-//    colorSpace: ColorSpace = ColorSpace.get(ColorSpace.Named.Srgb)
-// ): Image
+expect fun Image(
+   width: Int,
+   height: Int,
+   config: ImageConfig = ImageConfig.Argb8888,
+   hasAlpha: Boolean = true,
+   colorSpace: ColorSpace /*TODO = ColorSpace.get(ColorSpace.Named.Srgb)*/
+): Image
 
-/* expect */ typealias NativeImage = android.graphics.Bitmap
+expect class NativeImage
 
 interface Image {
 

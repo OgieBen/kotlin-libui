@@ -13,7 +13,7 @@ import androidx.ui.engine.geometry.Rect
  *
  * To create a [Picture], use a [PictureRecorder].
  */
-class Picture(val frameworkPicture: android.graphics.Picture) {
+class Picture(val frameworkPicture: androidx.ui.NativePicture) {
 
     /**
      * Creates an image from this picture.

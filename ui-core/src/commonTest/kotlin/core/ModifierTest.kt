@@ -16,15 +16,15 @@
 
 package androidx.ui.core
 
-import org.junit.Assert.assertEquals
-import org.junit.Test
+//import org.junit.Assert.assertEquals
+//import org.junit.Test
 
 class ModifierTest {
     /**
      * Verifies that the [Modifier.plus] operation results in [Modifier] instances that
      * [Modifier.foldIn] and [Modifier.foldOut] in the expected order.
      */
-    @Test
+    /*TODO@Test
     fun wrapElementChain() {
         val chain = SampleModifier(1) + SampleModifier(2) + SampleModifier(3)
         val forwards = chain.foldIn(emptyList<Int>()) { acc, e ->
@@ -35,7 +35,7 @@ class ModifierTest {
         }
         assertEquals("1-3 folded in (forwards)", listOf(1, 2, 3), forwards)
         assertEquals("1-3 folded out (backwards)", listOf(3, 2, 1), backwards)
-    }
+    }*/
 }
 
 private class SampleModifier(val value: Int) : Modifier.Element

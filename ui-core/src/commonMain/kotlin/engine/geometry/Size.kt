@@ -202,12 +202,12 @@ open class Size(val width: Float, val height: Float) : OffsetBase {
     /**
      * The lesser of the magnitudes of the [width] and the [height].
      */
-    fun getShortestSide(): Float = Math.min(width.absoluteValue, height.absoluteValue)
+    fun getShortestSide(): Float = kotlin.math.min(width.absoluteValue, height.absoluteValue)
 
     /**
      * The greater of the magnitudes of the [width] and the [height].
      */
-    fun getLongestSide(): Float = Math.max(width.absoluteValue, height.absoluteValue)
+    fun getLongestSide(): Float = kotlin.math.max(width.absoluteValue, height.absoluteValue)
 
     // Convenience methods that do the equivalent of calling the similarly named
     // methods on a Rect constructed from the given origin and this size.

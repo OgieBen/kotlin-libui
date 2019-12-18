@@ -343,7 +343,7 @@ abstract class ColorSpace internal constructor(
             return true
         }
 
-        if (other == null || javaClass != other.javaClass) {
+        if (other == null /*TODO || javaClass != other.javaClass*/) {
             return false
         }
 
@@ -429,7 +429,7 @@ fun ColorSpace.connect(
  * point; the specified color space otherwise
  * @see Adaptation
  */
-@JvmOverloads
+//TODO @JvmOverloads
 fun ColorSpace.adapt(
     whitePoint: WhitePoint,
     adaptation: Adaptation = Adaptation.Bradford

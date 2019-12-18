@@ -67,7 +67,7 @@ package androidx.ui.graphics
  *  * [Paint.blendMode], which uses [BlendMode] to define the compositing
  *    strategy.
  */
-enum class BlendMode(private val porterDuffMode: android.graphics.PorterDuff.Mode?) {
+enum class BlendMode(private val porterDuffMode: NativeBlendMode?) {
 
     // This list comes from Skia's SkXfermode.h and the values (order) should be
     // kept in sync.
@@ -80,7 +80,7 @@ enum class BlendMode(private val porterDuffMode: android.graphics.PorterDuff.Mod
      *
      * ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_clear.png)
      */
-    clear(android.graphics.PorterDuff.Mode.CLEAR),
+    clear(NativeClearBlendMode()),
 
     /**
      * Drop the destination image, only paint the source image.
@@ -92,7 +92,7 @@ enum class BlendMode(private val porterDuffMode: android.graphics.PorterDuff.Mod
      *
      * ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_src.png)
      */
-    src(android.graphics.PorterDuff.Mode.SRC),
+    src(NativeSrcBlendMode()),
 
     /**
      * Drop the source image, only paint the destination image.
@@ -104,7 +104,7 @@ enum class BlendMode(private val porterDuffMode: android.graphics.PorterDuff.Mod
      *
      * ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_dst.png)
      */
-    dst(android.graphics.PorterDuff.Mode.DST),
+    dst(NativeDstBlendMode()),
 
     /**
      * Composite the source image over the destination image.
@@ -118,7 +118,7 @@ enum class BlendMode(private val porterDuffMode: android.graphics.PorterDuff.Mod
      *
      * ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_srcOver.png)
      */
-    srcOver(android.graphics.PorterDuff.Mode.SRC_OVER),
+    srcOver(NativeSrcOverBlendMode()),
 
     /**
      * Composite the source image under the destination image.
@@ -132,7 +132,7 @@ enum class BlendMode(private val porterDuffMode: android.graphics.PorterDuff.Mod
      * This is useful when the source image should have been painted before the
      * destination image, but could not be.
      */
-    dstOver(android.graphics.PorterDuff.Mode.DST_OVER),
+    dstOver(NativeDstOverBlendMode()),
 
     /**
      * Show the source image, but only where the two images overlap. The
@@ -150,7 +150,7 @@ enum class BlendMode(private val porterDuffMode: android.graphics.PorterDuff.Mod
      *
      * ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_srcIn.png)
      */
-    srcIn(android.graphics.PorterDuff.Mode.SRC_IN),
+    srcIn(NativeSrcInBlendMode()),
 
     /**
      * Show the destination image, but only where the two images overlap. The
@@ -166,7 +166,7 @@ enum class BlendMode(private val porterDuffMode: android.graphics.PorterDuff.Mod
      *
      * ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_dstIn.png)
      */
-    dstIn(android.graphics.PorterDuff.Mode.DST_IN),
+    dstIn(NativeDstInBlendMode()),
 
     /**
      * Show the source image, but only where the two images do not overlap. The
@@ -182,7 +182,7 @@ enum class BlendMode(private val porterDuffMode: android.graphics.PorterDuff.Mod
      *
      * ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_srcOut.png)
      */
-    srcOut(android.graphics.PorterDuff.Mode.SRC_OUT),
+    srcOut(NativeSrcOutBlendMode()),
 
     /**
      * Show the destination image, but only where the two images do not overlap. The
@@ -198,7 +198,7 @@ enum class BlendMode(private val porterDuffMode: android.graphics.PorterDuff.Mod
      *
      * ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_dstOut.png)
      */
-    dstOut(android.graphics.PorterDuff.Mode.DST_OUT),
+    dstOut(NativeDstOutBlendMode()),
 
     /**
      * Composite the source image over the destination image, but only where it
@@ -215,7 +215,7 @@ enum class BlendMode(private val porterDuffMode: android.graphics.PorterDuff.Mod
      *
      * ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_srcATop.png)
      */
-    srcATop(android.graphics.PorterDuff.Mode.SRC_ATOP),
+    srcATop(NativeSrcATopBlendMode()),
 
     /**
      * Composite the destination image over the source image, but only where it
@@ -232,7 +232,7 @@ enum class BlendMode(private val porterDuffMode: android.graphics.PorterDuff.Mod
      *
      * ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_dstATop.png)
      */
-    dstATop(android.graphics.PorterDuff.Mode.DST_ATOP),
+    dstATop(NativeDstATopBlendMode()),
 
     /**
      * Apply a bitwise `xor` operator to the source and destination images. This
@@ -242,7 +242,7 @@ enum class BlendMode(private val porterDuffMode: android.graphics.PorterDuff.Mod
      *
      * ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_xor.png)
      */
-    xor(android.graphics.PorterDuff.Mode.XOR),
+    xor(NativeXorBlendMode()),
 
     /**
      * Sum the components of the source and destination images.
@@ -255,7 +255,7 @@ enum class BlendMode(private val porterDuffMode: android.graphics.PorterDuff.Mod
      *
      * ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_plus.png)
      */
-    plus(android.graphics.PorterDuff.Mode.ADD),
+    plus(NativePlusBlendMode()),
 
     /**
      * Multiply the color components of the source and destination images.
@@ -312,7 +312,7 @@ enum class BlendMode(private val porterDuffMode: android.graphics.PorterDuff.Mod
      *  * [hardLight], which combines [modulate] and [screen] to favor the
      *    source image.
      */
-    screen(android.graphics.PorterDuff.Mode.SCREEN), // The last coeff mode.
+    screen(NativeScreenBlendMode()), // The last coeff mode.
 
     /**
      * Multiply the components of the source and destination images after
@@ -336,7 +336,7 @@ enum class BlendMode(private val porterDuffMode: android.graphics.PorterDuff.Mod
      *  * [hardLight], which is similar to [overlay] but favors the source image
      *    instead of the destination image.
      */
-    overlay(android.graphics.PorterDuff.Mode.OVERLAY),
+    overlay(NativeOverlayBlendMode()),
 
     /**
      * Composite the source and destination image by choosing the lowest value
@@ -347,7 +347,7 @@ enum class BlendMode(private val porterDuffMode: android.graphics.PorterDuff.Mod
      *
      * ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_darken.png)
      */
-    darken(android.graphics.PorterDuff.Mode.DARKEN),
+    darken(NativeDarkenBlendMode()),
 
     /**
      * Composite the source and destination image by choosing the highest value
@@ -358,7 +358,7 @@ enum class BlendMode(private val porterDuffMode: android.graphics.PorterDuff.Mod
      *
      * ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_lighten.png)
      */
-    lighten(android.graphics.PorterDuff.Mode.LIGHTEN),
+    lighten(NativeLightenBlendMode()),
 
     /**
      * Divide the destination by the inverse of the source.
@@ -467,7 +467,7 @@ enum class BlendMode(private val porterDuffMode: android.graphics.PorterDuff.Mod
      *
      * ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_multiply.png)
      */
-    multiply(android.graphics.PorterDuff.Mode.MULTIPLY), // The last separable mode.
+    multiply(NativeMultiplyBlendMode()), // The last separable mode.
 
     /**
      * Take the hue of the source image, and the saturation and luminosity of the
@@ -547,7 +547,7 @@ enum class BlendMode(private val porterDuffMode: android.graphics.PorterDuff.Mod
      */
     luminosity(null); // Not supported
 
-    fun toPorterDuffMode(): android.graphics.PorterDuff.Mode {
+    fun toPorterDuffMode(): NativeBlendMode {
         if (porterDuffMode == null) {
             TODO("njawad: " + this + " does not have equivalent PorterDuff mode")
         } else {
@@ -555,3 +555,24 @@ enum class BlendMode(private val porterDuffMode: android.graphics.PorterDuff.Mod
         }
     }
 }
+
+expect class NativeBlendMode
+
+expect fun NativeClearBlendMode(): NativeBlendMode
+expect fun NativeSrcBlendMode(): NativeBlendMode
+expect fun NativeDstBlendMode(): NativeBlendMode
+expect fun NativeSrcOverBlendMode(): NativeBlendMode
+expect fun NativeDstOverBlendMode(): NativeBlendMode
+expect fun NativeSrcInBlendMode(): NativeBlendMode
+expect fun NativeDstInBlendMode(): NativeBlendMode
+expect fun NativeSrcOutBlendMode(): NativeBlendMode
+expect fun NativeDstOutBlendMode(): NativeBlendMode
+expect fun NativeSrcATopBlendMode(): NativeBlendMode
+expect fun NativeDstATopBlendMode(): NativeBlendMode
+expect fun NativeXorBlendMode(): NativeBlendMode
+expect fun NativePlusBlendMode(): NativeBlendMode
+expect fun NativeScreenBlendMode(): NativeBlendMode
+expect fun NativeOverlayBlendMode(): NativeBlendMode
+expect fun NativeDarkenBlendMode(): NativeBlendMode
+expect fun NativeLightenBlendMode(): NativeBlendMode
+expect fun NativeMultiplyBlendMode(): NativeBlendMode

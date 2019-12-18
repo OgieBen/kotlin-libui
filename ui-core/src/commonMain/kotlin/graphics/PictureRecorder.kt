@@ -30,7 +30,7 @@ package androidx.ui.graphics
  */
 class PictureRecorder {
 
-    internal val frameworkPicture = android.graphics.Picture()
+    internal val frameworkPicture = androidx.ui.NativePicture()
 
     /**
      * Whether this object is currently recording commands.

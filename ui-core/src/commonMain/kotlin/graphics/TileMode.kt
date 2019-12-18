@@ -55,8 +55,8 @@ enum class TileMode(val nativeTileMode: NativeTileMode) {
     Mirror(NativeMirrorTileMode())
 }
 
-/* expect */ typealias NativeTileMode = android.graphics.Shader.TileMode
+expect class NativeTileMode
 
-/* expect */ fun NativeClampTileMode(): NativeTileMode = android.graphics.Shader.TileMode.CLAMP
-/* expect */ fun NativeRepeatedTileMode(): NativeTileMode = android.graphics.Shader.TileMode.REPEAT
-/* expect */ fun NativeMirrorTileMode(): NativeTileMode = android.graphics.Shader.TileMode.MIRROR
+expect fun NativeClampTileMode(): NativeTileMode
+expect fun NativeRepeatedTileMode(): NativeTileMode
+expect fun NativeMirrorTileMode(): NativeTileMode

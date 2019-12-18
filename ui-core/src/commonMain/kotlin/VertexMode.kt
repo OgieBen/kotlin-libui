@@ -20,17 +20,23 @@ package androidx.ui
  * Defines how a list of points is interpreted when drawing a set of triangles.
  *
  * Used by [Canvas.drawVertices].
- *These enum values must be kept in sync with SkVertices::VertexMode.
+ * These enum values must be kept in sync with SkVertices::VertexMode.
  */
-enum class VertexMode(private val frameworkVertex: android.graphics.Canvas.VertexMode) {
+enum class VertexMode(private val frameworkVertex: NativeVertexMode) {
     /** Draw each sequence of three points as the vertices of a triangle. */
-    triangles(android.graphics.Canvas.VertexMode.TRIANGLES),
+    triangles(NativeTrianglesVertexMode()),
 
     /** Draw each sliding window of three points as the vertices of a triangle. */
-    triangleStrip(android.graphics.Canvas.VertexMode.TRIANGLE_STRIP),
+    triangleStrip(NativeTriangleStripVertexMode()),
 
     /** Draw the first point and each sliding window of two points as the vertices of a triangle. */
-    triangleFan(android.graphics.Canvas.VertexMode.TRIANGLE_FAN);
+    triangleFan(NativeTriangleFanVertexMode());
 
     fun toFrameworkVertexMode() = frameworkVertex
 }
+
+expect class NativeVertexMode
+
+expect fun NativeTrianglesVertexMode(): NativeVertexMode
+expect fun NativeTriangleStripVertexMode(): NativeVertexMode
+expect fun NativeTriangleFanVertexMode(): NativeVertexMode

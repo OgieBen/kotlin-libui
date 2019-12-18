@@ -16,15 +16,15 @@
 
 package androidx.ui.core
 
-import org.junit.Assert.assertEquals
-import org.junit.Test
+//import org.junit.Assert.assertEquals
+//import org.junit.Test
 
 class DurationTest {
     /**
      * Check that construction via the literal extension time units syntax is equivalent to
      * the [Duration] factory function
      */
-    @Test
+    /*TODO @Test
     fun equivalentConstruction() {
         listOf(
             10.days to Duration(days = 10),
@@ -36,5 +36,5 @@ class DurationTest {
         ).forEachIndexed { i, (fromLiteral, fromFactory) ->
             assertEquals("literal to factory check $i", fromLiteral, fromFactory)
         }
-    }
+    }*/
 }

@@ -25,6 +25,8 @@ import androidx.ui.engine.geometry.Rect
 import androidx.ui.vectormath64.Matrix4
 import androidx.ui.vectormath64.isIdentity
 
+actual typelias NativeCanvas = android.graphics.Canvas
+
 /**
  * Create a new Canvas instance that targets its drawing commands
  * to the provided [Image]

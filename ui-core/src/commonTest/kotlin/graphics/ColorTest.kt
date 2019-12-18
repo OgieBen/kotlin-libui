@@ -15,7 +15,7 @@
  */
 
 package androidx.ui.graphics
-import androidx.test.filters.SmallTest
+/*TODO import androidx.test.filters.SmallTest
 import androidx.ui.graphics.colorspace.ColorSpaces
 import androidx.ui.lerp
 import androidx.ui.toHexString
@@ -179,4 +179,4 @@ class ColorTest {
 
         assertEquals(Color(0f, 0f, 0f, 0f), result)
     }
-}
+}*/

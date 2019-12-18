@@ -59,7 +59,7 @@ data class TransferParameters(
 
         // Next representable float after 1.0
         // We use doubles here but the representation inside our native code is often floats
-        if (!(d >= 0.0 && d <= 1.0f + 1f.ulp)) {
+        if (!(d >= 0.0 && d <= 1.0f /*TODO + 1f.ulp*/)) {
             throw IllegalArgumentException(
                 "Parameter d must be in the range [0..1], was " +
                         "$d"

@@ -80,10 +80,10 @@ data class Rect(
          */
         fun fromPoints(a: Offset, b: Offset): Rect {
             return Rect(
-                    Math.min(a.dx, b.dx),
-                    Math.min(a.dy, b.dy),
-                    Math.max(a.dx, b.dx),
-                    Math.max(a.dy, b.dy)
+                    kotlin.math.min(a.dx, b.dx),
+                    kotlin.math.min(a.dy, b.dy),
+                    kotlin.math.max(a.dx, b.dx),
+                    kotlin.math.max(a.dy, b.dy)
             )
         }
 
@@ -192,10 +192,10 @@ data class Rect(
      */
     fun intersect(other: Rect): Rect {
         return fromLTRB(
-                Math.max(left, other.left),
-                Math.max(top, other.top),
-                Math.min(right, other.right),
-                Math.min(bottom, other.bottom)
+                kotlin.math.max(left, other.left),
+                kotlin.math.max(top, other.top),
+                kotlin.math.min(right, other.right),
+                kotlin.math.min(bottom, other.bottom)
         )
     }
 
@@ -205,10 +205,10 @@ data class Rect(
      */
     fun expandToInclude(other: Rect): Rect {
         return fromLTRB(
-                Math.min(left, other.left),
-                Math.min(top, other.top),
-                Math.max(right, other.right),
-                Math.max(bottom, other.bottom)
+                kotlin.math.min(left, other.left),
+                kotlin.math.min(top, other.top),
+                kotlin.math.max(right, other.right),
+                kotlin.math.max(bottom, other.bottom)
         )
     }
 
@@ -237,13 +237,13 @@ data class Rect(
      * The lesser of the magnitudes of the [width] and the [height] of this
      * rectangle.
      */
-    fun getShortestSide(): Float = Math.min(width.absoluteValue, height.absoluteValue)
+    fun getShortestSide(): Float = kotlin.math.min(width.absoluteValue, height.absoluteValue)
 
     /**
      * The greater of the magnitudes of the [width] and the [height] of this
      * rectangle.
      */
-    fun getLongestSide(): Float = Math.max(width.absoluteValue, height.absoluteValue)
+    fun getLongestSide(): Float = kotlin.math.max(width.absoluteValue, height.absoluteValue)
 
     /**
      * The offset to the intersection of the top and left edges of this rectangle.

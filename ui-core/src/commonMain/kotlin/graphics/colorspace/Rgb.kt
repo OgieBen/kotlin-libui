@@ -301,7 +301,7 @@ internal constructor(
      * @see whitePoint
      */
     @Size(6)
-    fun getPrimaries(): FloatArray = primaries.clone()
+    fun getPrimaries(): FloatArray = primaries.copyOf()
 
     /**
      * Returns the transform of this color space as a new array. The
@@ -318,7 +318,7 @@ internal constructor(
      * @see getInverseTransform
      */
     @Size(9)
-    fun getTransform(): FloatArray = transform.clone()
+    fun getTransform(): FloatArray = transform.copyOf()
 
     /**
      * Returns the inverse transform of this color space as a new array.
@@ -335,7 +335,7 @@ internal constructor(
      * @see getTransform
      */
     @Size(9)
-    fun getInverseTransform(): FloatArray = inverseTransform.clone()
+    fun getInverseTransform(): FloatArray = inverseTransform.copyOf()
 
     /**
      * Creates a new RGB color space using a 3x3 column-major transform matrix.
@@ -874,7 +874,7 @@ internal constructor(
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
-        if (other == null || javaClass != other.javaClass) return false
+        if (other == null /*TODO || javaClass != other.javaClass*/) return false
         if (!super.equals(other)) return false
 
         val rgb = other as Rgb
